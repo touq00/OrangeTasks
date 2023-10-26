@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'dart:math';
+//import 'dart:math';
 void main(){
 print("enter the first number");
 double num1= double.parse(stdin.readLineSync()!);
@@ -8,7 +8,7 @@ double num2= double.parse(stdin.readLineSync()!);
 
 print("enter the operation : ");
 String? operator = stdin.readLineSync()!;
-
+// aaaa
 if(operator == "+"){
   print("addition==> ${num1}+${num2}= ${num1+num2}");
 }else if(operator=="-"){
@@ -20,4 +20,6 @@ if(operator == "+"){
 }else{
   print("invalid operation");
 }
+//aasodcjsdewfwekfhgwiuf;kv
+
 }
