@@ -1,4 +1,4 @@
-import 'dart:io';
+//import 'dart:io';
 
 void main(){
 int  add(int a, int b, int c, int d){
@@ -15,8 +15,8 @@ int Function(int) Function(int) Function(int) addCurrying(int a){
   };
 };
 final addTwo = addCurrying(2);
-final addFive = addTwo(5);
-final addTen = addFive(3);
-final res = addTen(4);
+final addThree = addTwo(5);
+final addFour = addThree(3);
+final res = addFour(4);
 print(res);
 }
