@@ -32,18 +32,18 @@ int Function(int) taskToPerform() {
 }
 
 // Custom map function
-List<T> map<T>(List<T> list, T Function(T) callback) {
-  List<T> result = [];
-  for (T item in list) {
+List<A> map<A>(List<A> list, A Function(A) callback) {
+  List<A> result = [];
+  for (A item in list) {
     result.add(callback(item));               
   }
-  return result;                                                // T in the map and filter faster and ran out of words
+  return result;                                               
 }
                                                      
 // Custom filter function
-List<T> filter<T>(List<T> list, bool Function(T) callback) {
-  List<T> result = [];
-  for (T item in list) {
+List<F> filter<F>(List<F> list, bool Function(F) callback) {
+  List<F> result = [];
+  for (F item in list) {
     if (callback(item)) {
       result.add(item);
     }
