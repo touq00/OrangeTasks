@@ -1,0 +1,55 @@
+//inheritance
+void main() {
+  Lion scar = Lion();
+  Dog jack = Dog();
+  Cat kitty = Cat();
+
+// zoo => animals // this is polymorphism 
+List<Animals> zooAnimals =[scar, jack,kitty];
+}
+
+class Animals {
+  int numOfLimbs = 4;
+  eat() {
+    print("eating normally like all animal does ");
+  }
+  sleep() {
+    print("Sleeping");
+  }
+  walk() {
+    print("Walking");
+  }
+  sneaky(){
+    print("all animals sneaky");
+  }
+}
+
+class Lion extends Animals {
+@override 
+eat(){
+  print("lion is eating DIFF");
+}
+  Roar() {
+    print("Roaring");
+  }
+}
+
+class Dog extends Animals {
+@override
+sleep(){
+  print("sleep with loud sounds");
+}
+  Bark() {
+    print("Barking");
+  }
+}
+
+class Cat extends Animals {
+@override
+sneaky(){
+  print("the cats quite walker than animals");
+}
+  Meo() {
+    print("Meo");
+  }
+}
