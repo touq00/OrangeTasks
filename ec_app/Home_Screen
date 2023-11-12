@@ -1,0 +1,565 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ec_app/product_details.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<Ctg>list=[
+    Ctg(text: 'Flash Deal', path: 'assets/icons/Flash Icon.svg'),
+    Ctg(text: 'Bill', path: 'assets/icons/Bill Icon.svg'),
+    Ctg(text: 'Game', path: 'assets/icons/Game Icon.svg'),
+    Ctg(text: 'Daily Gift', path: 'assets/icons/Gift Icon.svg'),
+    Ctg(text: 'More', path: 'assets/icons/Discover.svg'),
+  ];
+
+  List<Product>list1=[
+Product(productname: 'Wireless Controller\n for PS™', productimage: 'assets/images/Image Popular Product 1.png', productprice: '\%64.99'),
+    Product(productname: 'Nike Sport White-\nMan Pant', productimage:'assets/images/Image Popular Product 2.png', productprice:'\$50.5'),
+    Product(productname: 'I Think it\s A Bike\n Helmet', productimage: 'assets/images/Image Popular Product 3.png', productprice:'\$36.5')
+  ];
+
+  int currentpage=0;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+       onDestinationSelected: (int index){
+         setState(() {
+           currentpage=index;
+         });
+       },
+      backgroundColor: Color(0xFFffffff),
+        indicatorColor: Colors.white,
+        selectedIndex: currentpage,
+        destinations: [
+          NavigationDestination(icon: SvgPicture.asset('assets/icons/Shop Icon.svg'), label: ''),
+          NavigationDestination(icon: SvgPicture.asset('assets/icons/Heart Icon.svg'), label: ''),
+          NavigationDestination(icon: SvgPicture.asset('assets/icons/Chat bubble Icon.svg'), label: ''),
+          NavigationDestination(icon: SvgPicture.asset('assets/icons/User Icon.svg'), label: ''),
+        ],
+      ),
+      backgroundColor: const Color(0xFFffffff),
+      body:[ Home(list: list, list1: list1),const FavPage(),const ChatBubble(),const UserProfile()][currentpage],
+
+    );
+  }
+}
+class FavPage extends StatelessWidget {
+  const FavPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.deepPurple,
+        body: Text('FAV PAGE',
+          style: TextStyle(
+              color: Colors.white
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class ChatBubble extends StatelessWidget {
+  const ChatBubble({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.deepPurple,
+        body: Text('Chat Bubble',
+          style: TextStyle(
+              color: Colors.white
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class UserProfile extends StatelessWidget {
+  const UserProfile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.deepPurple,
+        body: Text('UserProfile',
+        style: TextStyle(
+          color: Colors.white
+        ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class Home extends StatelessWidget {
+  const Home({
+    super.key,
+    required this.list,
+    required this.list1,
+  });
+
+  final List<Ctg> list;
+  final List<Product> list1;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 20),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFf4f4f4),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: 'Search Product',
+                          hintStyle: const TextStyle(
+                            fontSize: 14,
+                            fontFamily: 'Muli',
+                          ),
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: SvgPicture.asset('assets/icons/Search Icon.svg'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10
+                  ),
+                  Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: const Color(0XFFf4f4f4),
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(9.0),
+                      child: SvgPicture.asset('assets/icons/Cart Icon.svg'),
+                    ),
+                  ),
+                  const SizedBox(width: 10
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: 45,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: const Color(0XFFf4f4f4),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset('assets/icons/Bell.svg'),
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 35),
+                        width: 18,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.red,
+                        ),
+                        child: const Center(
+                          child: Text(
+                            '+99',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 9,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 17,),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal:15,vertical: 15 ),
+              width: 350,
+              height: 90,
+              decoration: BoxDecoration(
+                color: const Color(0xFF4b3298),
+                borderRadius: BorderRadius.circular(22)
+              ),
+              child: const Text.rich(
+                  TextSpan(
+                    text: 'A Summer Surpise\n',
+                    style: TextStyle(
+                        fontFamily: 'Muli',
+                        fontSize: 16,
+                        color: Colors.white
+                    ),
+                    children: [
+                      TextSpan(
+                        text: 'Cashback 20%',
+                        style: TextStyle(
+                            fontFamily: 'Muli',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            color: Colors.white,
+                          letterSpacing: 1
+                        ),
+                      ),
+                    ]
+                  ),
+              ),
+            ),
+           SizedBox(height: 34,),
+
+
+           Column(
+             children: [
+               Container(
+                 width: double.infinity,
+                 child: Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: list,
+                 ),
+               ),
+             ],
+           ),
+            // SizedBox(height: 10,),
+             Padding(
+               padding: const EdgeInsets.all(20.0),
+               child: Row(
+                mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+                children:[
+                 Text(
+                    'Special for you',
+                    style: TextStyle(
+                      fontFamily: 'Muli',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.black
+                    ),
+                  ),
+                  Text(
+                    'See More',
+                    style: TextStyle(
+                        fontFamily: 'Muli',
+                        fontSize: 12,
+                        color: Color(0xFFc3c3c3)
+                    ),
+                  ),
+                ],
+            ),
+             ),
+            SingleChildScrollView(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 240,
+                    height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Stack(
+                        children: [
+                          ColorFiltered(
+                              colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2),
+                              BlendMode.srcOver
+                              ),
+                            child: Image.asset('assets/images/Image Banner 2.png'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Text.rich(TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Smartphone\n',
+                                  style: TextStyle(
+                                    fontFamily: 'Muli',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '18 Brand',
+                                  style: TextStyle(
+                                    fontFamily: 'Muli',
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 25,),
+                  SizedBox(
+                    width: 240,
+                    height: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Stack(
+                        children: [
+                          ColorFiltered(
+                            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2),
+                                BlendMode.srcOver
+                            ),
+                            child: Image.asset('assets/images/Image Banner 3.png'),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Text.rich(TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: 'Fashion\n',
+                                  style: TextStyle(
+                                    fontFamily: 'Muli',
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: '24 Brand',
+                                  style: TextStyle(
+                                    fontFamily: 'Muli',
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            //SizedBox(height: 10,),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment:MainAxisAlignment.spaceBetween ,
+
+                children:[
+                  Text(
+                    'Popular Products',
+                    style: TextStyle(
+                        fontFamily: 'Muli',
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black
+                    ),
+                  ),
+                  Text(
+                    'See More',
+                    style: TextStyle(
+                        fontFamily: 'Muli',
+                        fontSize: 12,
+                        color: Color(0xFFc3c3c3)
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: list1,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Product extends StatefulWidget {
+  const Product({
+    super.key, required this.productname, required this.productimage, required this.productprice,
+  });
+
+   final String productname;
+   final String productimage;
+   final String productprice;
+
+  @override
+  State<Product> createState() => _ProductState();
+}
+
+class _ProductState extends State<Product> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: SizedBox(
+        child: Container(
+          padding: EdgeInsets.only(left: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductDetails())
+                  );
+                },
+                child: Container(
+                  height: 140,
+                  width: 140,
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(17),
+                    color: Color(0xFFf3f3f3)
+                  ),
+                  child: Image.asset(widget.productimage),
+                ),
+              ),
+              SizedBox(height: 5,),
+              Text(widget.productname,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Muli'
+              ),
+              ),
+              Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(widget.productprice,
+                  style: TextStyle(
+                    fontFamily: 'Muli',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Colors.deepOrange
+                  ),
+                    textAlign: TextAlign.start,
+                  ),
+
+                  SizedBox(
+                    width: 80,
+                      child: HeartLikeButton()),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+      ),
+    );
+  }
+}
+
+
+
+class HeartLikeButton extends StatefulWidget {
+  const HeartLikeButton({
+    super.key,
+  });
+
+  @override
+  State<HeartLikeButton> createState() => _HeartLikeButtonState();
+}
+
+class _HeartLikeButtonState extends State<HeartLikeButton> {
+  bool isPressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        setState(() {
+          isPressed = !isPressed;
+        });
+      },
+      child: Container(
+
+        padding: EdgeInsets.all(7),
+        width: 30,
+        height: 30,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: isPressed ? Color(0xFFfeeae3) : Color(0xFFf3f3f3)
+        ),
+        child: SvgPicture.asset('assets/icons/Heart Icon_2.svg',
+        color: isPressed ? Colors.red :Color(0xFFdbdee3),
+        ),
+      ),
+    );
+  }
+}
+
+class Ctg extends StatelessWidget {
+  const Ctg({
+    super.key, required this.text, required this.path,
+  });
+
+  final String text;
+  final String path;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+
+      children: [
+        Container(
+          padding: EdgeInsets.all(16),
+          width: 55,
+          height: 55,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: Color(0xFFfeeadc),
+          ),
+          child: SvgPicture.asset(path),
+        ),
+        SizedBox(
+          width: 43,
+          child: Text(text,
+          style: TextStyle(
+            fontFamily: 'Muli',
+            fontSize: 15,
+            color: Color(0xFF959595),
+          ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+
+
